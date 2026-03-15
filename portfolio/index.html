@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Олександр — Маркетолог | Портфоліо</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2d2d2d;
+            background: #fafafa;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER / HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            padding: 80px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: #fafafa;
+            clip-path: ellipse(55% 100% at 50% 100%);
+        }
+
+        .hero-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.3);
+            margin-bottom: 24px;
+            background: #e0e0e0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.85;
+            margin-bottom: 24px;
+        }
+
+        .hero .cta {
+            display: inline-block;
+            padding: 14px 36px;
+            background: #e94560;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hero .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(233,69,96,0.4);
+        }
+
+        /* ===== NAV ===== */
+        nav {
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            list-style: none;
+            padding: 16px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1a1a2e;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #e94560;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #e94560;
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+
+        .section-intro {
+            color: #555;
+            margin-bottom: 40px;
+            max-width: 640px;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .about-photo {
+            width: 100%;
+            border-radius: 16px;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+            background: #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #bbb;
+        }
+
+        .about-text p {
+            margin-bottom: 16px;
+            color: #444;
+        }
+
+        .stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #e94560;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* ===== SERVICES ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 32px 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.92rem;
+        }
+
+        /* ===== PORTFOLIO / GALLERY ===== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: #e8e8e8;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,26,46,0.85) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h4 {
+            color: #fff;
+            font-size: 1.05rem;
+        }
+
+        .gallery-overlay span {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+        }
+
+        /* ===== PHOTO SECTION ===== */
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .photos-grid .photo-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #e8e8e8;
+            aspect-ratio: 1;
+            position: relative;
+        }
+
+        .photos-grid .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .photos-grid .photo-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .photos-grid .photo-card:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+            aspect-ratio: 1;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #bbb;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial {
+            background: #fff;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '\201C';
+            font-size: 4rem;
+            color: #e94560;
+            opacity: 0.2;
+            position: absolute;
+            top: 8px;
+            left: 16px;
+            line-height: 1;
+        }
+
+        .testimonial p {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: #1a1a2e;
+            color: #fff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item span {
+            color: #444;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 14px 18px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: #e94560;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            padding: 14px 36px;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            align-self: flex-start;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(233,69,96,0.4);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #1a1a2e;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 20px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 12px;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            border: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .photos-grid { grid-template-columns: repeat(2, 1fr); }
+            .photos-grid .photo-card:first-child {
+                grid-column: span 2;
+                grid-row: span 1;
+                aspect-ratio: 16/9;
+            }
+            nav ul { gap: 16px; }
+        }
+
+        @media (max-width: 480px) {
+            .photos-grid { grid-template-columns: 1fr; }
+            .photos-grid .photo-card:first-child {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-photo">&#128100;</div>
+    <h1>Олександр</h1>
+    <p class="subtitle">Digital-маркетолог &bull; Стратег &bull; Креативник</p>
+    <a href="#contact" class="cta">Зв'язатися зі мною</a>
+</header>
+
+<!-- NAV -->
+<nav>
+    <ul>
+        <li><a href="#about">Про мене</a></li>
+        <li><a href="#services">Послуги</a></li>
+        <li><a href="#portfolio">Портфоліо</a></li>
+        <li><a href="#photos">Фото</a></li>
+        <li><a href="#testimonials">Відгуки</a></li>
+        <li><a href="#contact">Контакти</a></li>
+    </ul>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2>Про мене</h2>
+    <p class="section-intro">Маркетолог з пристрастю до результатів та креативних рішень.</p>
+    <div class="about-grid">
+        <div class="about-photo">&#128247;</div>
+        <div class="about-text">
+            <p>Привіт! Я Олександр — digital-маркетолог з 7+ роками досвіду у створенні та реалізації маркетингових стратегій для бізнесів різного масштабу.</p>
+            <p>Спеціалізуюся на performance-маркетингу, SMM, контент-стратегіях та брендингу. Допомагаю компаніям зростати через ефективні digital-кампанії та креативний підхід.</p>
+            <p>Працював з клієнтами у сферах e-commerce, IT, HoReCa, beauty та освіти. Кожен проєкт — це можливість створити щось унікальне та результативне.</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">7+</div>
+                    <div class="stat-label">Років досвіду</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">120+</div>
+                    <div class="stat-label">Проєктів</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Клієнтів</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3x</div>
+                    <div class="stat-label">Середнє зростання ROI</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background: #f0f0f5; max-width: 100%; padding-left: calc((100% - 960px)/2 + 20px); padding-right: calc((100% - 960px)/2 + 20px);">
+    <h2>Послуги</h2>
+    <p class="section-intro">Комплексний підхід до маркетингу для вашого бізнесу.</p>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">&#128200;</div>
+            <h3>Performance Marketing</h3>
+            <p>Google Ads, Facebook Ads, таргетована реклама з фокусом на ROI та конверсії. Оптимізація рекламних бюджетів.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#128241;</div>
+            <h3>SMM та контент</h3>
+            <p>Стратегія присутності у соцмережах, створення контент-плану, візуальний контент та community management.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#127919;</div>
+            <h3>Брендинг та стратегія</h3>
+            <p>Розробка маркетингової стратегії, позиціонування бренду, аналіз конкурентів та цільової аудиторії.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#128202;</div>
+            <h3>Аналітика</h3>
+            <p>Налаштування Google Analytics, аналіз даних, побудова дашбордів та звітність для прийняття рішень.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#9993;</div>
+            <h3>Email-маркетинг</h3>
+            <p>Побудова воронок продажів, автоматизація розсилок, A/B тестування та сегментація бази.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">&#128269;</div>
+            <h3>SEO-просування</h3>
+            <p>Технічний та контентний SEO, семантичне ядро, лінкбілдинг та оптимізація для пошукових систем.</p>
+        </div>
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+    <h2>Портфоліо</h2>
+    <p class="section-intro">Вибрані проєкти, якими я пишаюся.</p>
+    <div class="gallery">
+        <div class="gallery-item">
+            <div class="photo-placeholder">&#128722;</div>
+            <div class="gallery-overlay">
+                <h4>E-commerce кампанія</h4>
+                <span>Google Ads &bull; +280% конверсій</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="photo-placeholder">&#127828;</div>
+            <div class="gallery-overlay">
+                <h4>Ребрендинг ресторану</h4>
+                <span>Брендинг &bull; SMM &bull; +150% охоплення</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="photo-placeholder">&#128187;</div>
+            <div class="gallery-overlay">
+                <h4>IT-стартап запуск</h4>
+                <span>Performance &bull; 10K лідів за 3 місяці</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="photo-placeholder">&#128132;</div>
+            <div class="gallery-overlay">
+                <h4>Beauty-бренд</h4>
+                <span>Instagram &bull; +500% підписників</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="photo-placeholder">&#127891;</div>
+            <div class="gallery-overlay">
+                <h4>Онлайн-школа</h4>
+                <span>Email &bull; Воронки &bull; 2000+ студентів</span>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <div class="photo-placeholder">&#127970;</div>
+            <div class="gallery-overlay">
+                <h4>Корпоративний сайт</h4>
+                <span>SEO &bull; TOP-3 за 6 місяців</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PHOTOS -->
+<section id="photos" style="background: #f0f0f5; max-width: 100%; padding-left: calc((100% - 960px)/2 + 20px); padding-right: calc((100% - 960px)/2 + 20px);">
+    <h2>Фото</h2>
+    <p class="section-intro">Моменти з робочих процесів, конференцій та зустрічей з клієнтами.</p>
+    <div class="photos-grid">
+        <div class="photo-card">
+            <div class="photo-placeholder" style="font-size:72px;">&#127908;</div>
+        </div>
+        <div class="photo-card">
+            <div class="photo-placeholder">&#128218;</div>
+        </div>
+        <div class="photo-card">
+            <div class="photo-placeholder">&#127758;</div>
+        </div>
+        <div class="photo-card">
+            <div class="photo-placeholder">&#128187;</div>
+        </div>
+        <div class="photo-card">
+            <div class="photo-placeholder">&#129309;</div>
+        </div>
+        <div class="photo-card">
+            <div class="photo-placeholder">&#127942;</div>
+        </div>
+        <div class="photo-card">
+            <div class="photo-placeholder">&#9749;</div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <h2>Відгуки клієнтів</h2>
+    <p class="section-intro">Що кажуть ті, з ким я працював.</p>
+    <div class="testimonials">
+        <div class="testimonial">
+            <p>Олександр допоміг нам збільшити продажі на 200% за перші 3 місяці співпраці. Його підхід до аналітики та оптимізації вражає!</p>
+            <div class="testimonial-author">Марина Коваленко</div>
+            <div class="testimonial-role">CEO, ShopUA</div>
+        </div>
+        <div class="testimonial">
+            <p>Професійний підхід до кожної деталі. Олександр не просто налаштовує рекламу — він будує цілісну стратегію росту бренду.</p>
+            <div class="testimonial-author">Дмитро Шевченко</div>
+            <div class="testimonial-role">Засновник, TechStart</div>
+        </div>
+        <div class="testimonial">
+            <p>Завдяки Олександру наш Instagram виріс з 2К до 50К підписників за пів року. Якісна аудиторія, реальні клієнти!</p>
+            <div class="testimonial-author">Анна Петренко</div>
+            <div class="testimonial-role">Власниця, Beauty Lab</div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Контакти</h2>
+    <p class="section-intro">Готові обговорити ваш проєкт? Напишіть мені!</p>
+    <div class="contact-grid">
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon">&#128231;</div>
+                <div>
+                    <strong>Email</strong><br>
+                    <span>oleksandr.marketing@gmail.com</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">&#128222;</div>
+                <div>
+                    <strong>Телефон</strong><br>
+                    <span>+380 (XX) XXX-XX-XX</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">&#128172;</div>
+                <div>
+                    <strong>Telegram</strong><br>
+                    <span>@oleksandr_marketing</span>
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">&#127760;</div>
+                <div>
+                    <strong>Локація</strong><br>
+                    <span>Київ, Україна</span>
+                </div>
+            </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <input type="text" placeholder="Ваше ім'я" required>
+            <input type="email" placeholder="Ваш email" required>
+            <input type="text" placeholder="Тема">
+            <textarea placeholder="Ваше повідомлення..." required></textarea>
+            <button type="submit">Надіслати повідомлення</button>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Олександр — Digital-маркетолог. Усі права захищено.</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Lightbox for gallery items with images
+    document.querySelectorAll('.gallery-item img, .photo-card img').forEach(img => {
+        img.addEventListener('click', () => {
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+        });
+    });
+
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Form handler
+    function handleSubmit(e) {
+        e.preventDefault();
+        alert('Дякую за повідомлення! Я зв\'яжусь з вами найближчим часом.');
+        e.target.reset();
+    }
+
+    // Scroll animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+    });
+</script>
+
+</body>
+</html>
