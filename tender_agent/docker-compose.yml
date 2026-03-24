@@ -1,0 +1,8 @@
+services:
+  tender-agent:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./tender_agent.log:/app/tender_agent.log
