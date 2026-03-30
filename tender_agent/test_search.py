@@ -10,10 +10,10 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 logger = logging.getLogger()
 
 sys.path.insert(0, ".")
-from scrapers.prozorro import search_prozorro
-from scrapers.ted import search_ted
+from scrapers.smarttender import search_smarttender
 from scrapers.ungm import search_ungm
-from scrapers.dgmarket import search_dgmarket
+from scrapers.giz import search_giz
+from scrapers.etender import search_etender
 from scorer import score_tenders
 from telegram_bot import _print_to_console
 
@@ -23,12 +23,11 @@ async def main():
     all_tenders = []
 
     async with aiohttp.ClientSession() as session:
-        # Search all available sources (no API key needed)
         sources = [
-            ("Prozorro 🇺🇦", search_prozorro(session, days_back=7)),
-            ("TED 🇪🇺", search_ted(session, days_back=14)),
+            ("SmartTender.biz 🇺🇦", search_smarttender(session, days_back=7)),
             ("UNGM 🇺🇳", search_ungm(session, days_back=14)),
-            ("DG Market 🌍", search_dgmarket(session, days_back=14)),
+            ("GIZ Ukraine 🇩🇪", search_giz(session, days_back=14)),
+            ("E-Tender.ua 🇺🇦", search_etender(session, days_back=7)),
         ]
 
         for name, coro in sources:
@@ -45,9 +44,9 @@ async def main():
     if all_tenders:
         print("🤖 Оцінюю релевантність (базова оцінка без AI)...")
         scored = await score_tenders(all_tenders)
-        _print_to_console(scored, min_score=20.0)
+        _print_to_console(scored)
     else:
-        print("Тендерів не знайдено (можливо, API тимчасово недоступні)")
+        print("Тендерів не знайдено (можливо, сайти тимчасово недоступні)")
 
 
 if __name__ == "__main__":

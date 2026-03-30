@@ -42,12 +42,10 @@ class Tender:
         """Format tender as a Telegram message."""
         stars = "⭐" * min(5, max(1, int(self.relevance_score / 20)))
         source_labels = {
-            "prozorro": "🇺🇦 Prozorro",
-            "ted": "🇪🇺 TED (EU)",
+            "smarttender": "🇺🇦 SmartTender.biz",
             "ungm": "🇺🇳 UNGM (UN)",
-            "sam_gov": "🇺🇸 SAM.gov",
-            "dgmarket": "🌍 DG Market",
-            "zakupivli_pro": "🇺🇦 Закупівлі.про",
+            "giz": "🇩🇪 GIZ Ukraine",
+            "etender": "🇺🇦 E-Tender.ua",
         }
         source_label = source_labels.get(self.source, self.source)
 

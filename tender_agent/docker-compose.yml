@@ -6,3 +6,4 @@ services:
       - .env
     volumes:
       - ./tender_agent.log:/app/tender_agent.log
+      - ./sent_tenders.db:/app/sent_tenders.db

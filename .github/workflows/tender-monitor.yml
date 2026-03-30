@@ -1,0 +1,44 @@
+name: Daily Tender Monitor
+
+on:
+  schedule:
+    # Run every day at 07:00 UTC (09:00 Kyiv time)
+    - cron: '0 7 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  search-tenders:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r tender_agent/requirements.txt
+
+      - name: Restore tender DB cache
+        uses: actions/cache@v4
+        with:
+          path: tender_agent/sent_tenders.db
+          key: sent-tenders-db
+
+      - name: Run tender search
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        working-directory: tender_agent
+        run: python main.py --once
+
+      - name: Save tender DB cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: tender_agent/sent_tenders.db
+          key: sent-tenders-db-${{ github.run_id }}

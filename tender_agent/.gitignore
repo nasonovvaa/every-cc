@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 tender_agent.log
+sent_tenders.db
